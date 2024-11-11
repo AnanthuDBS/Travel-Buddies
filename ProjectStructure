@@ -1,0 +1,12 @@
+project-folder/
+├── public/
+│   └── index.html
+├── src/
+│   ├── App.js
+│   ├── components/
+│   │   ├── PostForm.js
+│   │   ├── PostList.js
+│   │   └── PostDetail.js
+│   ├── index.js
+│   └── api.js
+└── package.json
