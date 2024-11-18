@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Travel Buddies</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <h1>List of Available Travel Plans</h1>
+    <h1>Travel Buddies</h1>
+
+    <!-- Form for creating a travel plan -->
+    <form id="tripForm">
+        <input type="text" id="destination" placeholder="Destination" required />
+        <input type="text" id="modeOfTravel" placeholder="Mode of Travel" required />
+        <input type="datetime-local" id="travelTime" required />
+        <input type="number" id="participantLimit" placeholder="Participant Limit" min="1" required />
+        <button type="submit">Create Trip</button>
+    </form>
+
+    <h2>Available Trips</h2>
+    <div id="tripsContainer"></div>
+
+    <script src="script.js"></script>
 </body>
 </html>
