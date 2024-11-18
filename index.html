@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Defines the document type and declares this is an HTML5 document -->
     <meta charset="UTF-8" />
+    <!-- Ensures proper scaling on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- title of the page displayed in the browser tab -->
     <title>Travel Buddies</title>
+    <!-- Links an external CSS file for styling -->
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+    <!-- Main heading of the application -->
     <h1>Travel Buddies</h1>
 
-    <!-- Form for creating a travel plan -->
+    <!-- Form to create a new travel plan -->
     <form id="tripForm">
-        <input type="text" id="destination" placeholder="Destination" required />
+        <!-- Input for specifying the travel destination -->
+        <input type="text" id="destination" placeholder="Destination (within ROI)" required />
+        <!-- Input for specifying the mode of travel (e.g., Bus, Flight, Train, Car, etc.) -->
         <input type="text" id="modeOfTravel" placeholder="Mode of Travel" required />
+        <!-- Input for specifying the date and time of the travel -->
         <input type="datetime-local" id="travelTime" required />
+        <!-- Input for specifying the maximum number of participants -->
         <input type="number" id="participantLimit" placeholder="Participant Limit" min="1" required />
+        <!-- Button to submit the form and create the trip -->
         <button type="submit">Create Trip</button>
     </form>
 
+    <!-- Subheading for the section displaying available travel plans -->
     <h2>Available Trips</h2>
+    <!-- Container to dynamically load and display trips fetched from the backend -->
     <div id="tripsContainer"></div>
 
+    <!-- Links an external JavaScript file to handle interactivity and API integration -->
     <script src="script.js"></script>
 </body>
 </html>
