@@ -51,3 +51,5 @@ document.getElementById("tripForm").addEventListener("submit", async(e)=>{
         alert("Trip creation failed!");
     }
 });
+
+window.onload=getTrips; //call the getTrips funct to load and disp trips when page is loaded
