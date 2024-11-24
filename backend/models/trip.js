@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 const tripSchema = new mongoose.Schema({
     destination: {type:String, required:true},
     modeOfTravel: {type:String, require:true},
-    timeOfTravel: {type:Date, required:true}
+    timeOfTravel: {type:Date, required:true},
+    participantLimit: {type:Int16Array, required:true}
 });
 
 //Create a mongoose model for the 'Trip" collection using the tripSchema, this allows us to interact with the trips collection in mongoDB.
