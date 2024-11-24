@@ -38,3 +38,18 @@ ReferenceError: int is not defined
     at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
 
 Node.js v20.17.0
+
+
+>>>3<<< 
+@AnanthuDBS ➜ /workspaces/Travel-Buddies (main) $ node backend/app.js
+(node:50540) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:50540) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+Server is running on http://localhost:5000
+Error while connecting to MongoDB: Error: querySrv ENOTFOUND _mongodb._tcp.cluster.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17) {
+  errno: undefined,
+  code: 'ENOTFOUND',
+  syscall: 'querySrv',
+  hostname: '_mongodb._tcp.cluster.mongodb.net'
+}
