@@ -18,3 +18,23 @@ TypeError: Invalid schema configuration: `Int16Array` is not a valid type at pat
 
 Node.js v20.17.0
 @AnanthuDBS ➜ /workspaces/Travel-Buddies (main) $ 
+
+
+>>>>>2<<<<<
+/workspaces/Travel-Buddies/backend/models/trip.js:9
+    participantLimit: {type:int, required:true}
+                            ^
+
+ReferenceError: int is not defined
+    at Object.<anonymous> (/workspaces/Travel-Buddies/backend/models/trip.js:9:29)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+    at Module.load (node:internal/modules/cjs/loader:1288:32)
+    at Module._load (node:internal/modules/cjs/loader:1104:12)
+    at Module.require (node:internal/modules/cjs/loader:1311:19)
+    at require (node:internal/modules/helpers:179:18)
+    at Object.<anonymous> (/workspaces/Travel-Buddies/backend/routes/trips.js:5:14)
+    at Module._compile (node:internal/modules/cjs/loader:1469:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)
+
+Node.js v20.17.0
