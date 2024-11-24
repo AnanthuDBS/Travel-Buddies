@@ -17,7 +17,9 @@ app.use(cors());
 app.use(express.json());
 
 //Connecting to mongoDB, here my cluster name is cluster0, and the creds are hardcoded
-const MONGO_URI = "mongodb+srv://root:root@cluster.mongodb.net/cluster0?retryWrites=true&w=majority";
+//const MONGO_URI = "mongodb+srv://root:root@cluster.mongodb.net/cluster0?retryWrites=true&w=majority";
+const uri = "mongodb+srv://root:root@cluster0.6iiyq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
 
 //to connect my app to mongoDB using the provided URI
 mongoose
