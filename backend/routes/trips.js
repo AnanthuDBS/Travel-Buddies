@@ -26,4 +26,14 @@ router.get("/", async (req, res) => {
     }
 })
 
-// Delete a trip
+// Delete a trip 
+router.delete("/:id", async (req, res) => {
+    try {
+        await Trip.findByIdAndDelete(req.params.id);
+        req.status(200).json({ message: "The Trip is deleted successfully."})
+    }   catch (err) {
+        res.status(500).json({error: err.message });
+    }
+});
+
+module.exports = router;
