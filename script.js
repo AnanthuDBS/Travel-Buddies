@@ -16,9 +16,7 @@ async function getTrips() {
 
         //populate the div with trip details
         tripDiv.innerHTML= 
-            <h3>${trip.destination} (${trip.modeOfTravel})</h3>
-            <p>Time: ${new Date(trip.travelTime).toLocaleString()}</p>
-            <p>Participants: ${trip.participants.length} / ${trip.participantLimit}</p>
+            <><h3>${trip.destination} (${trip.modeOfTravel})</h3><p>Time: ${new Date(trip.travelTime).toLocaleString()}</p><p>Participants: ${trip.participants.length} / ${trip.participantLimit}</p></>
         ;
     tripsContainer.appendChild(tripDiv); 
     });
@@ -39,7 +37,7 @@ document.getElementById("tripForm").addEventListener("submit", async(e)=>{
         method:"POST", 
         headers:{
             "Content-Type":"application/json", //json data is being sent
-        }
+        },
         body:json.stringify(trip), //convert the trip object to json and send it in the req body
     });
 
