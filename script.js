@@ -1,4 +1,6 @@
+const { json } = require("body-parser");
 const { response } = require("express");
+const { get } = require("mongoose");
 
 //funct to fetch all trips
 async function getTrips() {
@@ -21,3 +23,31 @@ async function getTrips() {
     tripsContainer.appendChild(tripDiv); 
     });
 }
+
+//new trip creation
+document.getElementById("tripForm").addEventListener("submit", async(e)=>{
+
+    const trip={
+        destination:document.getElementById("destination").value,
+        modeOfTravel:document.getElementById("modeOfTravel").value,
+        traveltime:new Date(document.getElementById("travelTime").value),
+        participantLimit:document.getElementById("participantLimit").value,
+    };
+
+    //POST req to server to create a new trip in the DB
+    const res=await get("http://localhost:5000/api/trips",{
+        method:"POST", 
+        headers:{
+            "Content-Type":"application/json", //json data is being sent
+        }
+        body:json.stringify(trip), //convert the trip object to json and send it in the req body
+    });
+
+    //checking if the req is success
+    if(res.ok){
+        alert("Successfully created the Trip!");
+        getTrips(); //the trip list is refreshed aftrer a new trip is created
+    } else{
+        alert("Trip creation failed!");
+    }
+});
