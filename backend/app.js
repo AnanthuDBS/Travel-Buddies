@@ -23,7 +23,7 @@ const MONGO_URI = "mongodb+srv://root:root@cluster0.6iiyq.mongodb.net/?retryWrit
 
 //to connect my app to mongoDB using the provided URI
 mongoose
-    .connect(MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true}) 
+    //.connect(MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true}) 
     .then(() => console.log("Connection to MongoDB successful")) //success case
     .catch((err) => console.error("Error while connecting to MongoDB:", err)); //failure case
 
