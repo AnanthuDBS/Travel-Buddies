@@ -37,7 +37,7 @@ document.getElementById("tripForm").addEventListener("submit", async(e)=>{
         headers:{
             "Content-Type":"application/json", //json data is being sent
         },
-        body:json.stringify(trip), //convert the trip object to json and send it in the req body
+        body:JSON.stringify(trip), //convert the trip object to json and send it in the req body
     });
 
     //checking if the req is success
