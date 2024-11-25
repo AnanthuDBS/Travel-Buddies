@@ -23,7 +23,7 @@ async function getTrips() {
 //new trip creation
 document.getElementById("tripForm").addEventListener("submit", async(e)=>{
     e.preventDefault(); //to not reload the page
-
+    console.log("Form submitted successfully"); //debug
     const trip={
         destination:document.getElementById("destination").value,
         modeOfTravel:document.getElementById("modeOfTravel").value,

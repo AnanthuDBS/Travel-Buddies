@@ -9,6 +9,7 @@ const cors = require("cors");
 
 //express app's instance to be created
 const app = express();
+const PORT=5000; //debug line
 
 //enable CORS to allow reqs from different origins(eg; different front-end apps)
 app.use(cors()); 
@@ -19,7 +20,6 @@ app.use(express.json());
 //Connecting to mongoDB, here my cluster name is cluster0, and the creds are hardcoded
 //const MONGO_URI = "mongodb+srv://root:root@cluster.mongodb.net/cluster0?retryWrites=true&w=majority";
 const MONGO_URI = "mongodb+srv://root:root@cluster0.6iiyq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-
 
 //to connect my app to mongoDB using the provided URI
 mongoose
@@ -34,5 +34,5 @@ app.use("/api/trips", tripRoutes); //tells to use tripRoutes for any reqs that s
 
 
 //setting up the Server
-const PORT = process.env.PORT || 5000;
+//const PORT = process.env.PORT || 5000; //commented while debugging
 app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`)); //tells the app to listen on the defined port, here 5000, and logs a message when the server is ON 
