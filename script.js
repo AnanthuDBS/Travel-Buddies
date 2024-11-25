@@ -12,10 +12,9 @@ async function getTrips() {
 
         //populate the div with trip details
         tripDiv.innerHTML= 
-            `<><h3>${trip.destination} (${trip.modeOfTravel})</h3>
+            `<h3>${trip.destination} (${trip.modeOfTravel})</h3>
             <p>Time: ${new Date(trip.travelTime).toLocaleString()}</p>
             <p>Participants: ${trip.participants.length} / ${trip.participantLimit}</p>
-            </>
         `;
     tripsContainer.appendChild(tripDiv); 
     });
