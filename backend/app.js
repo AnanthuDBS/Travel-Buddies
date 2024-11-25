@@ -6,6 +6,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 //middleware, to handle requests from different domains
 const cors = require("cors");
+const bodyParser = require('body-parser');
 
 //express app's instance to be created
 const app = express();
@@ -13,6 +14,7 @@ const PORT=5000; //debug line
 
 //enable CORS to allow reqs from different origins(eg; different front-end apps)
 app.use(cors()); 
+app.use(bodyParser.json());
 
 //middleware to handle json data sent in http reqs easily(eg; POST > then i can access it in 'req.body')
 app.use(express.json());
@@ -30,6 +32,7 @@ mongoose
 
 //setting up Routes
 const tripRoutes = require("./routes/trips"); //to import the routes from trips.js file inside the routes folder
+const bodyParser = require("body-parser");
 app.use("/api/trips", tripRoutes); //tells to use tripRoutes for any reqs that start with /api/trips
 
 
