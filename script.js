@@ -4,7 +4,7 @@ const { get } = require("mongoose");
 
 //funct to fetch all trips
 async function getTrips() {
-    const res = await fetch("http://localhost:5000/api/trips");
+    const response = await fetch("http://localhost:5000/api/trips");
     const trips=await response.json();
     const tripsContainer=document.getElementById("tripsContainer");
     tripsContainer.innerHTML=""; //this is to clear any existing content in the container to refresh the list

@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const tripSchema = new mongoose.Schema({
     destination: {type:String, required:true},
     modeOfTravel: {type:String, require:true},
-    timeOfTravel: {type:Date, required:true},
+    travelTime: {type:Date, required:true},
     participantLimit: {type:Number, required:true}
 });
 
