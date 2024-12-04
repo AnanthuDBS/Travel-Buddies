@@ -1,61 +1,48 @@
-// Fetch all trips
+// Function to fetch all trips
 async function getTrips() {
-    try {
-        const response = await fetch("http://localhost:5000/api/trips");
-        if (!response.ok) throw new Error(`Failed to fetch trips: ${response.statusText}`);
-        const trips = await response.json();
-        const tripsContainer = document.getElementById("tripsContainer");
-        tripsContainer.innerHTML = ""; // Clear existing content
+    const response = await fetch("http://localhost:5000/api/trips");
+    const trips = await response.json();
+    const tripsContainer = document.getElementById("tripsContainer");
+    tripsContainer.innerHTML = ""; // Clear any existing content
 
-        trips.forEach(trip => {
-            const tripDiv = document.createElement("div");
-            tripDiv.classList.add("trip");
+    trips.forEach((trip) => {
+        const tripDiv = document.createElement("div");
+        tripDiv.classList.add("trip");
 
-            tripDiv.innerHTML = `
-                <h3>${trip.destination} (${trip.modeOfTravel})</h3>
-                <p>Time: ${new Date(trip.travelTime).toLocaleString()}</p>
-                <p>Participants: ${trip.participants.length} / ${trip.participantLimit}</p>
-            `;
-            tripsContainer.appendChild(tripDiv);
-        });
-    } catch (err) {
-        console.error("Error fetching trips:", err.message);
-        alert("Unable to load trips. Please check your server connection.");
-    }
+        tripDiv.innerHTML = `
+            <h3>${trip.destination} (${trip.modeOfTravel})</h3>
+            <p>Time: ${new Date(trip.travelTime).toLocaleString()}</p>
+            <p>Participants: ${trip.participants.length} / ${trip.participantLimit}</p>
+        `;
+
+        tripsContainer.appendChild(tripDiv);
+    });
 }
 
-// Handle trip form submission
+// Event listener for creating a new trip
 document.getElementById("tripForm").addEventListener("submit", async (e) => {
     e.preventDefault();
-    console.log("Form submitted successfully");
+
     const trip = {
         destination: document.getElementById("destination").value,
         modeOfTravel: document.getElementById("modeOfTravel").value,
-        travelTime: new Date(document.getElementById("travelTime").value).toISOString(),
+        travelTime: new Date(document.getElementById("travelTime").value),
         participantLimit: document.getElementById("participantLimit").value,
     };
 
-    try {
-        const response = await fetch("http://localhost:5000/api/trips", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(trip),
-        });
+    const response = await fetch("http://localhost:5000/api/trips", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(trip),
+    });
 
-        if (response.ok) {
-            alert("Successfully created the Trip!");
-            getTrips(); // Refresh the trip list
-        } else {
-            const errorData = await response.json();
-            alert(`Trip creation failed: ${errorData.error}`);
-        }
-    } catch (err) {
-        console.error("Error creating trip:", err.message);
-        alert("Failed to create trip. Please try again.");
+    if (response.ok) {
+        alert("Successfully created the Trip!");
+        getTrips(); // Refresh the trip list
+    } else {
+        alert("Trip creation failed!");
     }
 });
 
-// Load trips on page load
+// Load trips when the page loads
 window.onload = getTrips;

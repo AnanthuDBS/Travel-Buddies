@@ -1,45 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Defines the document type and declares this is an HTML5 document -->
     <meta charset="UTF-8" />
-    <!-- Ensures proper scaling on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>Travel Buddies</title>
-    
-    <link href="https://db.onlinewebfonts.com/c/97c4b25dc74e0ab045154e75a8fdd69d?family=Game+of+Thrones" rel="stylesheet">   
 
     <style>
-        body{
-            font-family:"Game of Thrones", Arial;
-            padding:20px;
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
         }
-        .trip-list{
-             margin-left: 20px;
+        .trip-list {
+            margin-left: 20px;
         }
-        .trip{
-            border:1px solid #ddd;
-            margin-top:10px;
-            padding:10px;
+        .trip {
+            border: 1px solid #ddd;
+            margin-top: 10px;
+            padding: 10px;
         }
-        button{
+        button {
             background-color: turquoise;
-            color:black;
-            border:none;
-            padding:5px 10px;
-            cursor:pointer;
+            color: black;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
         }
-        button:hover{
+        button:hover {
             background-color: blue;
+            color: white;
         }
     </style>
-
 </head>
 <body>
     <h1>Travel Buddies</h1>
 
-    <!-- Form to create a new travel plan -->
     <form id="tripForm">
         <input type="text" id="destination" placeholder="Destination (within ROI)" required />
         <input type="text" id="modeOfTravel" placeholder="Mode of Travel" required />
@@ -49,10 +43,8 @@
     </form>
 
     <h2>Available Trips</h2>
-    <!-- Container to dynamically load and display trips fetched from the backend -->
     <div id="tripsContainer"></div>
 
     <script src="script.js"></script>
-    
 </body>
 </html>
