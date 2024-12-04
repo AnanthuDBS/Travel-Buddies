@@ -8,15 +8,19 @@ const router = express.Router(); //new Express router for handling diff routes
 
 //for Creating a new Trip
 //Post /API/trips
+// POST /api/trips
 router.post("/", async (req, res) => {
+    console.log("POST request received at /api/trips");
     try {
-        const trip = new Trip(req.body); //Create a new trip using the data from the req body
-        await trip.save(); //save the newly created trip to the DB
-        res.status(201).json(trip); //success case and response
-    }   catch (err) {
-        res.status(400).json({error: err.message}); //in case of invalid data
+        const trip = new Trip(req.body); // Create a new trip from the request body
+        await trip.save(); // Save the new trip to the DB
+        res.status(201).json(trip); // Respond with the saved trip
+    } catch (err) {
+        console.error("Error during POST request:", err); // Log the error if any
+        res.status(400).json({ error: err.message }); // Return error response
     }
 });
+
 
 
 //To Fetch all created trips
@@ -35,7 +39,7 @@ router.get("/", async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try {
         await Trip.findByIdAndDelete(req.params.id); //search and DEL the corresponding tripById by using 'id' param from the URL
-        req.status(200).json({ message: "The Trip is deleted successfully."})
+        res.status(200).json({ message: "The Trip is deleted successfully."});
     }   catch (err) {
         res.status(500).json({error: err.message });
     }

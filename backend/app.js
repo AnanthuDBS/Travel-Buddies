@@ -1,41 +1,59 @@
-//Required dependencies are imported first 
+// Required dependencies
+const express = require("express"); // Framework for server and API routing
+const mongoose = require("mongoose"); // MongoDB library
+const cors = require("cors"); // Middleware to handle requests from different domains
+const bodyParser = require("body-parser"); // Middleware to parse JSON requests
 
-//The 'express' module is to create the server and handle the API routing
-const express = require("express");
-//'mongoose' -to interact with MongoDB, library
-const mongoose = require("mongoose");
-//middleware, to handle requests from different domains
-const cors = require("cors");
-const bodyParser = require('body-parser');
-
-//express app's instance to be created
+// Initialize the Express app
 const app = express();
-const PORT=5000; //debug line
+const PORT = 5000; // The server will run on this port
 
-//enable CORS to allow reqs from different origins(eg; different front-end apps)
-app.use(cors()); 
+// Middleware to enable CORS and parse JSON data in requests
+// CORS Configuration to allow requests from localhost:3000
+const corsOptions = {
+    origin: 'http://localhost:5000', // to match my frontend's URL
+    methods: ['GET', 'POST'],
+};
+
+app.use(cors(corsOptions)); // customized CORS settings
+
 app.use(bodyParser.json());
+app.use(express.json()); // To handle JSON data in HTTP requests
 
-//middleware to handle json data sent in http reqs easily(eg; POST > then i can access it in 'req.body')
-app.use(express.json());
+//middleware to log incoming reqs
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next();
+});
 
-//Connecting to mongoDB, here my cluster name is cluster0, and the creds are hardcoded
-//const MONGO_URI = "mongodb+srv://root:root@cluster.mongodb.net/cluster0?retryWrites=true&w=majority";
+// Middleware to manually handle CORS headers
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*"); // Change "*" to your frontend URL if you want to restrict it
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
+
+
+// MongoDB connection string (update if credentials or URI change)
 const MONGO_URI = "mongodb+srv://root:root@cluster0.6iiyq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
-//to connect my app to mongoDB using the provided URI
+// Connect to MongoDB using Mongoose
 mongoose
-    .connect(MONGO_URI) 
-    .then(() => console.log("Connection to MongoDB successful")) //success case
-    .catch((err) => console.error("Error while connecting to MongoDB:", err)); //failure case
+    .connect(MONGO_URI)
+    .then(() => console.log("Connection to MongoDB successful"))
+    .catch((err) => console.error("Error while connecting to MongoDB:", err));
+
+// Import and use routes
+const tripRoutes = require("./routes/trips"); // Import the trips routes
+app.use("/api/trips", tripRoutes); // Use the trips routes for `/api/trips` endpoints
+
+app.get("/", (req, res) => {
+    res.send("Server is up and running");
+});
 
 
-//setting up Routes
-const tripRoutes = require("./routes/trips"); //to import the routes from trips.js file inside the routes folder
-const bodyParser = require("body-parser");
-app.use("/api/trips", tripRoutes); //tells to use tripRoutes for any reqs that start with /api/trips
-
-
-//setting up the Server
-//const PORT = process.env.PORT || 5000; //commented while debugging
-app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`)); //tells the app to listen on the defined port, here 5000, and logs a message when the server is ON 
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
