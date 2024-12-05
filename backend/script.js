@@ -30,6 +30,8 @@ document.getElementById("tripForm").addEventListener("submit", async (e) => {
         participantLimit: document.getElementById("participantLimit").value,
     };
 
+    console.log(trip);
+
     const response = await fetch("http://localhost:5000/api/trips", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

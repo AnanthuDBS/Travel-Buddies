@@ -21,6 +21,9 @@ mongoose
     .then(() => console.log("Connection to MongoDB successful"))
     .catch((err) => console.error("Error while connecting to MongoDB:", err));
 
+app.use(express.static(path.join(__dirname, './')));
+
+
 // Add a root route
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
@@ -29,6 +32,8 @@ app.get("/", (req, res) => {
 // Import and use trip routes
 const tripRoutes = require("./routes/trips");
 app.use("/api/trips", tripRoutes);
+
+
 
 // Start the server
 app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));
