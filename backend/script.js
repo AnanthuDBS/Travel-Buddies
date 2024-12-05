@@ -65,7 +65,18 @@ async function editTrip(tripId) {
 }
 
 
-
+// Function to join a trip
+async function joinTrip(tripId) {
+    const response = await fetch(`http://localhost:5000/api/trips/join/${tripId}`, {
+        method: "PATCH",
+    });
+    if (response.ok) {
+        alert("Joined the trip!");
+        getTrips(); // Refresh the trip list
+    } else {
+        alert("Failed to join the trip!");
+    }
+}
 // Function to delete a trip
 async function deleteTrip(tripId) {
     const response = await fetch(`http://localhost:5000/api/trips/${tripId}`, {
