@@ -1,53 +1,34 @@
+// Required dependencies are imported first 
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const bodyParser = require('body-parser');
+const path = require("path"); // Import path module
 
+// Express app instance
 const app = express();
 const PORT = 5000;
 
-// Middleware
-app.use(cors());
+// Enable CORS and middleware
+app.use(cors()); 
+app.use(bodyParser.json());
 app.use(express.json());
 
-// MongoDB connection string (update if credentials or URI change)
-const MONGO_URI = "mongodb+srv://root:root@cluster0.6iiyq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-
 // MongoDB connection
-mongoose.connect(MONGO_URI)
-  .then(() => console.log("Connected to MongoDB"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+const MONGO_URI = "mongodb+srv://root:root@cluster0.6iiyq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+mongoose
+    .connect(MONGO_URI) 
+    .then(() => console.log("Connection to MongoDB successful"))
+    .catch((err) => console.error("Error while connecting to MongoDB:", err));
 
-// Trip Schema
-const tripSchema = new mongoose.Schema({
-  destination: String,
-  modeOfTravel: String,
-  travelTime: Date,
-  participantLimit: Number,
-  participants: { type: [String], default: [] },
+// Add a root route
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-const Trip = mongoose.model("Trip", tripSchema);
+// Import and use trip routes
+const tripRoutes = require("./routes/trips");
+app.use("/api/trips", tripRoutes);
 
-// Routes
-app.get("/api/trips", async (req, res) => {
-  try {
-    const trips = await Trip.find();
-    res.json(trips);
-  } catch (err) {
-    res.status(500).send("Error fetching trips");
-  }
-});
-
-app.post("/api/trips", async (req, res) => {
-  try {
-    const trip = new Trip(req.body);
-    await trip.save();
-    res.status(201).send("Trip created successfully");
-  } catch (err) {
-    res.status(500).send("Error creating trip");
-  }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Start the server
+app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));
