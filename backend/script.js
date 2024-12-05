@@ -64,6 +64,21 @@ async function editTrip(tripId) {
     };
 }
 
+
+
+// Function to delete a trip
+async function deleteTrip(tripId) {
+    const response = await fetch(`http://localhost:5000/api/trips/${tripId}`, {
+        method: "DELETE",
+    });
+    if (response.ok) {
+        alert("Trip deleted!");
+        getTrips(); // Refresh the trip list
+    } else {
+        alert("Failed to delete the trip!");
+    }
+}
+
 // Function to join a trip
 async function joinTrip(tripId) {
     const response = await fetch(`http://localhost:5000/api/trips/join/${tripId}`, {
