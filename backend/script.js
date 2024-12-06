@@ -51,12 +51,28 @@ document.getElementById("tripForm").addEventListener("submit", async (e) => {
 
     if (response.ok) {
         alert("Successfully created the Trip!");
-        getTrips(); // Refresh the trip list
+        document.getElementById("tripForm").reset(); // Clear the form
+        //getTrips(); // Refresh the trip list in the home page if wanted
     } else {
         alert("Trip creation failed!");
     }
 });
 
+//creating event listeners for the pages
+function initializePage() {
+
+    if(path.includes(index.html)){
+        const tripForm=document.getElementById("tripForm");
+        if(tripForm){
+            tripForm.addEventListener("submit", handleNewTripForm);
+        }
+    } else if(path.includes(available-trips.html)){
+        getTrips(); //load the trips only for the "Available Trips" page
+    }
+}
+
+//to init the page logic when the DOM is fully loaded
+const path=window.location.pathname;
 // Function to join a trip
 async function joinTrip(tripId) {
     const response = await fetch(`http://localhost:5000/api/trips/join/${tripId}`, {
