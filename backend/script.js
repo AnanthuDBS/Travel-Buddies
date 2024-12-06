@@ -22,6 +22,11 @@ async function getTrips() {
     });
 }
 
+//creating a function to navigate to Available Trips page
+function navigateToTrips() {
+    window.location.href="available-trips.html";
+}
+
 // Event listener for creating a new trip
 document.getElementById("tripForm").addEventListener("submit", async (e) => {
     e.preventDefault();
