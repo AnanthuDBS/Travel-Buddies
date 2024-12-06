@@ -16,10 +16,11 @@ app.use(express.json());
 
 // MongoDB connection
 const MONGO_URI = "mongodb+srv://root:root@cluster0.6iiyq.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-mongoose
-    .connect(MONGO_URI) 
-    .then(() => console.log("Connection to MongoDB successful"))
-    .catch((err) => console.error("Error while connecting to MongoDB:", err));
+mongoose.connect(MONGO_URI, {
+    serverSelectionTimeoutMS: 5000
+})
+.then(() => console.log("Connection to MongoDB successful"))
+.catch((err) => console.error("Error while connecting to MongoDB:", err));
 
 // Serve static files (HTML, CSS, JS)
 app.use(express.static(path.join(__dirname, './')));
