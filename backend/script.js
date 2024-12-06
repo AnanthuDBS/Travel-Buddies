@@ -27,6 +27,11 @@ function navigateToTrips() {
     window.location.href="available-trips.html";
 }
 
+//function to go back to Home page
+function goBack() {
+    window.location.href = "index.html";
+}
+
 // Event listener for creating a new trip
 document.getElementById("tripForm").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -100,4 +105,4 @@ async function deleteTrip(tripId) {
 }
 
 // Load trips when the page loads
-window.onload = getTrips;
+//window.onload = getTrips;
