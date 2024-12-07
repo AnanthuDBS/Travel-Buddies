@@ -95,7 +95,11 @@ async function joinTrip(tripId) {
 
 // Function to edit a trip
 async function editTrip(tripId) {
-    const trip = prompt("Enter new destination for the trip:"); // Add more fields as needed
+    const response = await fetch(`http://localhost:5000/api/trips/${tripId}`);
+    const trip = await response.json();
+    
+    //prompt to update, with current values as default
+    const updatedDestination=prompt()
     if (trip) {
         const response = await fetch(`http://localhost:5000/api/trips/${tripId}`, {
             method: "PUT",
