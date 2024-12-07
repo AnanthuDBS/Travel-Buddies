@@ -98,15 +98,29 @@ async function joinTrip(tripId) {
 // Function to edit a trip
 async function editTrip(tripId) {
     const tripDiv = document.querySelector(`[data-id="${tripId}"]`); //to ID the trip element by its data-ID
+    const response = await fetch(`http://localhost:5000/api/trips/${tripId}`);
     const trip = await response.json();
 
     //to replace the details with an editable form
     tripDiv.innerHTML = `
-        <form id="editForm-${tripdID}" class="edit-form">
+        <form id="editForm-${tripId}" class="edit-form">
             <label>
                 Destination:
-                <input type="text" id="edit-destination-${tripId}" value="${trip.destination}" required.
+                <input type="text" id="edit-destination-${tripId}" value="${trip.destination}" required>
             </label>
+            <label>
+                Mode of Travel:
+                <input type="text" id="edit-modeOfTravel-${tripId}" value="${trip.modeOfTravel}" required>
+            </label>
+            <label>
+                Travel Time:
+                <input type="datetime-local" id="edit-travelTime-${tripId}" value="${new Date(trip.travelTime).toISOString().slice(0, -1)}" required>
+            </label>
+            <label>
+                Participant Limit:
+                <input type="number" id="edit-participantLimit-${tripId}" value="${trip.participantLimit}" required>
+            </label>
+            <button type="submit">Save Changes</button>
         </form>
     `;
 
