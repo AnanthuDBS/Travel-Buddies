@@ -12,6 +12,7 @@ async function getTrips() {
         trips.forEach((trip) => {
             const tripDiv = document.createElement("div");
             tripDiv.classList.add("trip");
+            tripDiv.setAttribute("data-id", trip._id); //to add a data-id for identifying the trip
 
             tripDiv.innerHTML = `
                 <h3>${trip.destination} (${trip.modeOfTravel})</h3>
@@ -121,6 +122,7 @@ async function editTrip(tripId) {
                 <input type="number" id="edit-participantLimit-${tripId}" value="${trip.participantLimit}" required>
             </label>
             <button type="submit">Save Changes</button>
+            <button type="button" onclick="cancelEdit('${tripId}')">Cancel</button>
         </form>
     `;
 
@@ -150,6 +152,11 @@ async function editTrip(tripId) {
             alert("Failed to update the trip.");
         }
     });
+}
+
+// Function to cancel editing and restore original trip details
+function cancelEdit(tripId) {
+    getTrips(); // Refresh the trip list to restore the original state
 }
 
 
