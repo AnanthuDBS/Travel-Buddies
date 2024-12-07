@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 // Function to fetch all trips
 async function getTrips() {
     const response = await fetch("http://localhost:5000/api/trips");
@@ -95,26 +97,47 @@ async function joinTrip(tripId) {
 
 // Function to edit a trip
 async function editTrip(tripId) {
-    const response = await fetch(`http://localhost:5000/api/trips/${tripId}`);
+    const tripDiv = document.querySelector(`[data-id="${tripId}"]`); //to ID the trip element by its data-ID
     const trip = await response.json();
-    
-    //prompt to update, with current values as default
-    const updatedDestination=prompt()
-    if (trip) {
-        const response = await fetch(`http://localhost:5000/api/trips/${tripId}`, {
+
+    //to replace the details with an editable form
+    tripDiv.innerHTML = `
+        <form id="editForm-${tripdID}" class="edit-form">
+            <label>
+                Destination:
+                <input type="text" id="edit-destination-${tripId}" value="${trip.destination}" required.
+            </label>
+        </form>
+    `;
+
+    // now, to add an event listener for saving changes
+    document.getElementById(`editForm-${tripId}`).addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Collect updated values
+        const updatedTrip = {
+            destination: document.getElementById(`edit-destination-${tripId}`).value,
+            modeOfTravel: document.getElementById(`edit-modeOfTravel-${tripId}`).value,
+            travelTime: new Date(document.getElementById(`edit-travelTime-${tripId}`).value),
+            participantLimit: parseInt(document.getElementById(`edit-participantLimit-${tripId}`).value, 10),
+        };
+
+        // this is to send the updated data to the server
+        const updateResponse = await fetch(`http://localhost:5000/api/trips/${tripId}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ destination: trip }), // Send updated data
+            body: JSON.stringify(updatedTrip),
         });
 
-        if (response.ok) {
+        if (updateResponse.ok) {
             alert("Trip updated successfully!");
             getTrips(); // Refresh the trip list
         } else {
             alert("Failed to update the trip.");
         }
-    }
+    });
 }
+
 
 // Function to delete a trip
 async function deleteTrip(tripId) {
