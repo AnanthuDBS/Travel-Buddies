@@ -41,6 +41,19 @@ router.put("/join/:id", async (req, res) => {
     }
 });
 
+// Fetch a specific trip by ID
+router.get("/:id", async (req, res) => {
+    try {
+        const trip = await Trip.findById(req.params.id);
+        if (!trip) {
+            return res.status(404).json({ message: "Trip not found" });
+        }
+        res.status(200).json(trip);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 // Edit a trip
 router.put("/:id", async (req, res) => {
     try {

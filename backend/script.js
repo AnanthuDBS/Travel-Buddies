@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 // Function to fetch all trips
 async function getTrips() {
     try {
@@ -105,61 +103,82 @@ async function joinTrip(tripId) {
 
 // Function to edit a trip
 async function editTrip(tripId) {
-    const tripDiv = document.querySelector(`[data-id="${tripId}"]`); // To identify the trip element by its data-id
-    const response = await fetch(`http://localhost:5000/api/trips/${tripId}`);
-    const trip = await response.json();
+    console.log("editTrip called for tripId:", tripId);
+    try {
+        // Fetch the trip data
+        const response = await fetch(`http://localhost:5000/api/trips/${tripId}`);
 
-    // Replace the details with an editable form
-    tripDiv.innerHTML = `
-        <form id="editForm-${tripId}" class="edit-form">
-            <label>
-                Destination:
-                <input type="text" id="edit-destination-${tripId}" value="${trip.destination}" required>
-            </label>
-            <label>
-                Mode of Travel:
-                <input type="text" id="edit-modeOfTravel-${tripId}" value="${trip.modeOfTravel}" required>
-            </label>
-            <label>
-                Travel Time:
-                <input type="datetime-local" id="edit-travelTime-${tripId}" value="${new Date(trip.travelTime).toISOString().slice(0, -1)}" required>
-            </label>
-            <label>
-                Participant Limit:
-                <input type="number" id="edit-participantLimit-${tripId}" value="${trip.participantLimit}" required>
-            </label>
-            <button type="submit">Save Changes</button>
-            <button type="button" onclick="cancelEdit('${tripId}')">Cancel</button>
-        </form>
-    `;
-
-    // Add an event listener for saving changes
-    document.getElementById(`editForm-${tripId}`).addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        // Collect updated values
-        const updatedTrip = {
-            destination: document.getElementById(`edit-destination-${tripId}`).value,
-            modeOfTravel: document.getElementById(`edit-modeOfTravel-${tripId}`).value,
-            travelTime: new Date(document.getElementById(`edit-travelTime-${tripId}`).value),
-            participantLimit: parseInt(document.getElementById(`edit-participantLimit-${tripId}`).value, 10),
-        };
-
-        // Send the updated data to the server
-        const updateResponse = await fetch(`http://localhost:5000/api/trips/${tripId}`, {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(updatedTrip),
-        });
-
-        if (updateResponse.ok) {
-            alert("Trip updated successfully!");
-            getTrips(); // Refresh the trip list
-        } else {
-            alert("Failed to update the trip.");
+        if (!response.ok) {
+            alert("Failed to fetch trip data.");
+            return;
         }
-    });
+
+        const trip = await response.json();
+        console.log('Trip data fetched for editing:', trip);
+
+        const tripDiv = document.querySelector(`[data-id="${tripId}"]`);
+        if (!tripDiv) {
+            alert("Trip not found!");
+            return;
+        }
+
+        // Replace the details with an editable form
+        tripDiv.innerHTML = `
+            <form id="editForm-${tripId}" class="edit-form">
+                <label>
+                    Destination:
+                    <input type="text" id="edit-destination-${tripId}" value="${trip.destination}" required>
+                </label>
+                <label>
+                    Mode of Travel:
+                    <input type="text" id="edit-modeOfTravel-${tripId}" value="${trip.modeOfTravel}" required>
+                </label>
+                <label>
+                    Travel Time:
+                    <input type="datetime-local" id="edit-travelTime-${tripId}" value="${new Date(trip.travelTime).toISOString().slice(0, -1)}" required>
+                </label>
+                <label>
+                    Participant Limit:
+                    <input type="number" id="edit-participantLimit-${tripId}" value="${trip.participantLimit}" required>
+                </label>
+                <button type="submit">Save Changes</button>
+                <button type="button" onclick="cancelEdit('${tripId}')">Cancel</button>
+            </form>
+        `;
+
+        // Add an event listener for saving changes
+        document.getElementById(`editForm-${tripId}`).addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            // Collect updated values
+            const updatedTrip = {
+                destination: document.getElementById(`edit-destination-${tripId}`).value,
+                modeOfTravel: document.getElementById(`edit-modeOfTravel-${tripId}`).value,
+                travelTime: new Date(document.getElementById(`edit-travelTime-${tripId}`).value),
+                participantLimit: parseInt(document.getElementById(`edit-participantLimit-${tripId}`).value, 10),
+            };
+
+            // Send the updated data to the server
+            const updateResponse = await fetch(`http://localhost:5000/api/trips/${tripId}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(updatedTrip),
+            });
+
+            if (updateResponse.ok) {
+                alert("Trip updated successfully!");
+                getTrips(); // Refresh the trip list to reflect changes
+            } else {
+                alert("Failed to update the trip.");
+            }
+        });
+    } catch (err) {
+        console.error("Error fetching trip data for editing:", err);
+        alert("An error occurred while fetching the trip data.");
+    }
 }
+
+
 
 // Function to cancel editing and restore original trip details
 function cancelEdit(tripId) {
