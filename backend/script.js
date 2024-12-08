@@ -76,6 +76,7 @@ function initializePage() {
     if (path.includes("index.html")) {
         const tripForm = document.getElementById("tripForm");
         if (tripForm) {
+            document.getElementById('travelTime').setAttribute('min', new Date().toISOString().slice(0, 16));
             tripForm.addEventListener("submit", handleNewTripForm);
         }
     } else if (path.includes("available-trips.html")) {
@@ -135,7 +136,7 @@ async function editTrip(tripId) {
                 </label>
                 <label>
                     Travel Time:
-                    <input type="datetime-local" id="edit-travelTime-${tripId}" value="${new Date(trip.travelTime).toISOString().slice(0, -1)}" required>
+                    <input type="datetime-local" id="edit-travelTime-${tripId}" value="${new Date(trip.travelTime).toISOString().slice(0, 16)}" required>
                 </label>
                 <label>
                     Participant Limit:
