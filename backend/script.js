@@ -62,7 +62,7 @@ async function handleNewTripForm(e) { // Corrected handler to match the referenc
         alert("Successfully created the Trip!");
         document.getElementById("tripForm").reset(); // Clear the form
         if (window.location.href.includes("index.html")) {
-            getTrips(); // Refresh the trip list on the home page
+            //getTrips(); // Refresh the trip list on the home page
         }
     } else {
         alert("Trip creation failed!");
