@@ -22,6 +22,11 @@ mongoose.connect(MONGO_URI, {
 .then(() => console.log("Connection to MongoDB successful"))
 .catch((err) => console.error("Error while connecting to MongoDB:", err));
 
+// const uri = "mongodb://localhost:27017/travelBuddies"; // Use your local MongoDB URI
+// mongoose.connect(uri)
+// .then(() => console.log("Connected to local MongoDB"))
+// .catch((err) => console.error("Error connecting to MongoDB:", err));
+
 // Serve static files (HTML, CSS, JS)
 app.use(express.static(path.join(__dirname, './')));
 
