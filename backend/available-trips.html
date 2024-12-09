@@ -2,11 +2,50 @@
 <head>
     <title>Available Trips</title>
     <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 50px;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./assets/images/background2.jpg'); /* Path to your image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: blur(5px); 
+            z-index: -1; /* to place it behind content*/
+        }
+        .trip-list {
+            margin-left: 50px;
+        }
+        .trip {
+            border: 3px solid #ddd;
+            color: white;
+            margin-top: 10px;
+            padding: 10px;
+        }
+        button {
+            background-color: turquoise;
+            color: black;
+            border: 2px solid #ddd;
+            padding: 5px 30px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: rgb(92, 200, 92);
+            color: white;
+        }      
+    </style>
 
 </head>
 <body>
     <button onclick="goBack()" class="back-button">Back to Home Page</button>
-
+    <div class="background"></div>
     <h1>Available Trips</h1>
     <div id="tripsContainer"></div>
     <button onclick="goBack()">Back to Home Page</button>
