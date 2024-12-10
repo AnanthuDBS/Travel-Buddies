@@ -22,7 +22,7 @@ mongoose.connect(MONGO_URI, {
 .then(() => console.log("Connection to MongoDB successful"))
 .catch((err) => console.error("Error while connecting to MongoDB:", err));
 
-// const uri = "mongodb://localhost:27017/travelBuddies"; // Use your local MongoDB URI
+// const uri = "mongodb://localhost:27017/travelBuddies"; // to connect to local MongoDB URI
 // mongoose.connect(uri)
 // .then(() => console.log("Connected to local MongoDB"))
 // .catch((err) => console.error("Error connecting to MongoDB:", err));

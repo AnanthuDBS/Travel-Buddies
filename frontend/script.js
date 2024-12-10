@@ -1,7 +1,8 @@
 // Function to fetch all trips
+const API_BASE_URL = "http://localhost:5000"; //I can replace this with my backend's deployed URL
 async function getTrips() {
     try {
-        const response = await fetch("http://localhost:5000/api/trips");
+        const response = await fetch(`${API_BASE_URL}/api/trips`);
         const trips = await response.json();
         console.log("Fetched Trips: ", trips); //debug line
         const tripsContainer = document.getElementById("tripsContainer");
