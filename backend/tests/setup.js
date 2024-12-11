@@ -9,8 +9,16 @@ let mongoServer;
 beforeAll(async () => {
   mongoServer = await MongoMemoryServer.create();
   const uri = mongoServer.getUri();
-  await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+  await mongoose.connect(uri);
 });
+
+ // Clear the database before each test
+ beforeEach(async () => {
+    const collections = mongoose.connection.collections;
+    for (const key in collections) {
+      await collections[key].deleteMany({});
+    }
+  });
 
 // After all tests, disconnect and stop the server
 afterAll(async () => {
@@ -18,11 +26,4 @@ afterAll(async () => {
     await mongoServer.stop();
   });
   
-  // Clear the database before each test
-  beforeEach(async () => {
-    const collections = mongoose.connection.collections;
-    for (const key in collections) {
-      await collections[key].deleteMany({});
-    }
-  });
-  
+ 
