@@ -51,4 +51,28 @@ describe("Trip API", () => {
         expect(res.body[0].destination).toBe("Cork");
         expect(res.body[1].destination).toBe("Kildare");
     });
+
+    it("should update a trip", async () => {
+        // first, to create a trip
+        const trip = new Trip({
+          destination: "Limerick",
+          modeOfTravel: "Bus",
+          travelTime: "2024-12-25T14:00",
+          participantLimit: 15,
+        });
+        await trip.save();
+    
+        // Update the trip
+        const updatedData = {
+          destination: "Limerick City",
+          modeOfTravel: "Train",
+          participantLimit: 20,
+        };
+        const res = await request(app).put(`/api/trips/${trip._id}`).send(updatedData);
+    
+        expect(res.statusCode).toBe(200);
+        expect(res.body.destination).toBe("Limerick City");
+        expect(res.body.modeOfTravel).toBe("Train");
+        expect(res.body.participantLimit).toBe(20);
+    });
 });
