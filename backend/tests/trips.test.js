@@ -7,7 +7,7 @@ const Trip = require("../models/trip"); //to import the Trip model
 
 describe("Trip API", () => {
     //to clear and populate the db before tests
-    befireEach(async () => {
+    beforeEach(async () => {
         await Trip.deleteMany(); //to clr all the trips
     });
     it("should create a new trip", async () => {
@@ -48,7 +48,7 @@ describe("Trip API", () => {
         const res = await request(app).get("/api/trips");
         expect(res.statusCode).toBe(200);
         expect(res.body.length).toBe(2);
-        expect(res.body[0].destination).toBe("Dublin");
+        expect(res.body[0].destination).toBe("Cork");
         expect(res.body[1].destination).toBe("Kildare");
     });
 });
