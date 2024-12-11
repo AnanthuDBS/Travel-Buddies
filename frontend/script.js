@@ -94,9 +94,9 @@ window.onload = initializePage;
 async function joinTrip(tripId) {
     // Prompt user for details
     const name = prompt("Enter your name:");
-    const age = prompt("Enter your age:");
-    const email = prompt("Enter your email:");
-    const phoneNumber = prompt("Enter your phone number:");
+    const age = prompt("Enter your age (number only):");
+    const email = prompt("Enter your email (cannot use an ID which has already been used for joining this trip):");
+    const phoneNumber = prompt("Enter your phone number (cannot use a number which has already been used for joining this trip):");
 
     // Validate inputs
     if (!name || !age || !email || !phoneNumber) {

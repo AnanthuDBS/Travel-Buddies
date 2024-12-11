@@ -25,7 +25,6 @@ router.get("/", async (req, res) => {
     }
 });
 
-// Join a trip
 // Route to join a trip
 router.put("/join/:tripId", async (req, res) => {
     const { tripId } = req.params;
@@ -40,6 +39,18 @@ router.put("/join/:tripId", async (req, res) => {
         const trip = await Trip.findById(tripId);
         if (!trip) {
             return res.status(404).json({ message: "Trip not found." });
+        }
+
+        // Check for duplicate email
+        const isDuplicate = trip.participants.some(participant => participant.email === email);
+        if (isDuplicate) {
+            return res.status(400).json({ message: "This email is already registered for the trip." });
+        }
+
+        // Check for duplicate phone
+        const isDuplicatePhone = trip.participants.some(participant => participant.phoneNumber === phoneNumber);
+        if (isDuplicatePhone) {
+            return res.status(400).json({ message: "This phone number is already registered for the trip." });
         }
 
         // Add user details to participants array
