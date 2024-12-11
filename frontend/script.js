@@ -89,19 +89,49 @@ function initializePage() {
 // To initialize the page logic when the DOM is fully loaded
 window.onload = initializePage;
 
-// Function to join a trip
-async function joinTrip(tripId) {
-    const response = await fetch(`http://localhost:5000/api/trips/join/${tripId}`, {
-        method: "PUT",
-    });
 
-    if (response.ok) {
-        alert("You have joined the trip!");
-        getTrips(); // Refresh the trip list
-    } else {
-        alert("Failed to join the trip.");
+// Function to join a trip with user details
+async function joinTrip(tripId) {
+    // Prompt user for details
+    const name = prompt("Enter your name:");
+    const age = prompt("Enter your age:");
+    const email = prompt("Enter your email:");
+    const phoneNumber = prompt("Enter your phone number:");
+
+    // Validate inputs
+    if (!name || !age || !email || !phoneNumber) {
+        alert("All fields are required to join the trip.");
+        return;
+    }
+
+    const userDetails = {
+        name,
+        age: parseInt(age, 10),
+        email,
+        phoneNumber,
+    };
+
+    try {
+        const response = await fetch(`http://localhost:5000/api/trips/join/${tripId}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(userDetails),
+        });
+
+        if (response.ok) {
+            alert("You have joined the trip!");
+            getTrips(); // Refresh the trip list
+        } else {
+            const error = await response.json();
+            alert(`Failed to join the trip: ${error.message}`);
+        }
+    } catch (error) {
+        console.error("Error joining the trip:", error);
+        alert("An error occurred while joining the trip.");
     }
 }
+
+
 
 // Function to edit a trip
 async function editTrip(tripId) {

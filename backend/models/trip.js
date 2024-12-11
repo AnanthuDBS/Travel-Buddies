@@ -7,7 +7,14 @@ const tripSchema = new mongoose.Schema({
     modeOfTravel: { type: String, required: true },
     travelTime: { type: Date, required: true },
     participantLimit: { type: Number, required: true },
-    participants: { type: [String], default: [] }, // Adding participants field
+    participants: [         // Adding participants field
+        { 
+            name: String,
+            age: Number,
+            email: String,
+            phoneNumber: String,
+        },
+    ], 
 });
 
 // Create a mongoose model for the 'Trip' collection using the tripSchema

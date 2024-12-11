@@ -26,20 +26,38 @@ router.get("/", async (req, res) => {
 });
 
 // Join a trip
-router.put("/join/:id", async (req, res) => {
+// Route to join a trip
+router.put("/join/:tripId", async (req, res) => {
+    const { tripId } = req.params;
+    const { name, age, email, phoneNumber } = req.body;
+
+    // Validate user details
+    if (!name || !age || !email || !phoneNumber) {
+        return res.status(400).json({ message: "All fields are required to join the trip." });
+    }
+
     try {
-        const trip = await Trip.findById(req.params.id);
-        if (trip.participants.length < trip.participantLimit) {
-            trip.participants.push("new participant"); // Here, you could get the current user info from the request (e.g., req.user.id)
-            await trip.save();
-            res.status(200).json(trip);
-        } else {
-            res.status(400).json({ message: "Trip is full." });
+        const trip = await Trip.findById(tripId);
+        if (!trip) {
+            return res.status(404).json({ message: "Trip not found." });
         }
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+
+        // Add user details to participants array
+        const participant = { name, age, email, phoneNumber };
+        if (trip.participants.length >= trip.participantLimit) {
+            return res.status(400).json({ message: "Trip is already full." });
+        }
+
+        trip.participants.push(participant);
+        await trip.save();
+
+        res.status(200).json({ message: "Successfully joined the trip!" });
+    } catch (error) {
+        console.error("Error joining trip:", error);
+        res.status(500).json({ message: "An error occurred while joining the trip." });
     }
 });
+
 
 // Fetch a specific trip by ID
 router.get("/:id", async (req, res) => {
