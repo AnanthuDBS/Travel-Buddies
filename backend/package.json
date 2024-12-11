@@ -4,7 +4,7 @@
   "description": "Project Breakdown Frontend (React-based):",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --setupFilesAfterEnv ./tests/setup.js"
   },
   "author": "ananthu",
   "license": "ISC",
