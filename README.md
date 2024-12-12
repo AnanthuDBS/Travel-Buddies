@@ -21,3 +21,7 @@ API details provided in the link below: https://ananthupsankar.atlassian.net/wik
 API integration testes using Postman.
 Validation: Ensure that users don’t join if the participant limit is reached, and no duplicate email IDs or phone numbers are used.
 Join Logic: Functions to handle users joining a trip.
+
+Future updates;
+>Implement users and login to make the CRUD flow better
+>Allow users to leave a trip also (now, the only way for this is to delete the trip and create one again)
