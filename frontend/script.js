@@ -1,4 +1,5 @@
 // Function to fetch all trips
+// Reference: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
 const API_BASE_URL = "http://localhost:5000"; //I can replace this with my backend's deployed URL
 async function getTrips() {
     try {
