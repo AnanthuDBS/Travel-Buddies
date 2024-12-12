@@ -1,12 +1,14 @@
 project-folder/
-├── public/
-│   └── index.html
-├── src/
-│   ├── App.js
-│   ├── components/
-│   │   ├── PostForm.js
-│   │   ├── PostList.js
-│   │   └── PostDetail.js
-│   ├── index.js
-│   └── api.js
-└── package.json
+├── frontend/
+   └── index.html
+    └── available-trips.html
+    └── assets
+    └── script.js
+├── backend/
+│   └──models
+        └──trip.js
+    └── routes
+        └── trips.js
+    └── app.js
+    └──package.json
+├── README.md
