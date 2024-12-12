@@ -53,3 +53,40 @@ Error while connecting to MongoDB: Error: querySrv ENOTFOUND _mongodb._tcp.clust
   syscall: 'querySrv',
   hostname: '_mongodb._tcp.cluster.mongodb.net'
 }
+
+
+node_module error while build;
+Configuration file: none
+To use retry middleware with Faraday v2.0+, install `faraday-retry` gem
+  Liquid Exception: Liquid syntax error (line 50): Variable '{{a}' was not properly terminated with regexp: /\}\}/ in backend/node_modules/balanced-match/README.md
+/usr/local/bundle/gems/liquid-4.0.4/lib/liquid/block_body.rb:136:in `raise_missing_variable_terminator': Liquid syntax error (line 50): Variable '{{a}' was not properly terminated with regexp: /\}\}/ (Liquid::SyntaxError)
+	from /usr/local/bundle/gems/liquid-4.0.4/lib/liquid/block_body.rb:128:in `create_variable'
+	from /usr/local/bundle/gems/liquid-4.0.4/lib/liquid/block_body.rb:39:in `parse'
+	from /usr/local/bundle/gems/liquid-4.0.4/lib/liquid/document.rb:10:in `parse'
+	from /usr/local/bundle/gems/liquid-4.0.4/lib/liquid/document.rb:5:in `parse'
+	from /usr/local/bundle/gems/liquid-4.0.4/lib/liquid/template.rb:130:in `parse'
+	from /usr/local/bundle/gems/liquid-4.0.4/lib/liquid/template.rb:114:in `parse'
+	from /usr/local/bundle/gems/jekyll-3.10.0/lib/jekyll/liquid_renderer/file.rb:13:in `block in parse'
+	from /usr/local/bundle/gems/jekyll-3.10.0/lib/jekyll/liquid_renderer/file.rb:49:in `measure_time'
+	from /usr/local/bundle/gems/jekyll-3.10.0/lib/jekyll/liquid_renderer/file.rb:12:in `parse'
+	from /usr/local/bundle/gems/jekyll-3.10.0/lib/jekyll/renderer.rb:121:in `render_liquid'
+	from /usr/local/bundle/gems/jekyll-3.10.0/lib/jekyll/renderer.rb:79:in `render_document'
+	from /usr/local/bundle/gems/jekyll-3.10.0/lib/jekyll/renderer.rb:62:in `run'
+	from /usr/local/bundle/gems/jekyll-3.10.0/lib/jekyll/site.rb:479:in `render_regenerated'
+	from /usr/local/bundle/gems/jekyll-3.10.0/lib/jekyll/site.rb:472:in `block in render_pages'
+	from /usr/local/bundle/gems/jekyll-3.10.0/lib/jekyll/site.rb:471:in `each'
+	from /usr/local/bundle/gems/jekyll-3.10.0/lib/jekyll/site.rb:471:in `render_pages'
+	from /usr/local/bundle/gems/jekyll-3.10.0/lib/jekyll/site.rb:192:in `render'
+	from /usr/local/bundle/gems/jekyll-3.10.0/lib/jekyll/site.rb:71:in `process'
+	from /usr/local/bundle/gems/jekyll-3.10.0/lib/jekyll/command.rb:28:in `process_site'
+	from /usr/local/bundle/gems/jekyll-3.10.0/lib/jekyll/commands/build.rb:65:in `build'
+	from /usr/local/bundle/gems/jekyll-3.10.0/lib/jekyll/commands/build.rb:36:in `process'
+	from /usr/local/bundle/gems/github-pages-232/bin/github-pages:70:in `block (3 levels) in <top (required)>'
+	from /usr/local/bundle/gems/mercenary-0.3.6/lib/mercenary/command.rb:220:in `block in execute'
+	from /usr/local/bundle/gems/mercenary-0.3.6/lib/mercenary/command.rb:220:in `each'
+	from /usr/local/bundle/gems/mercenary-0.3.6/lib/mercenary/command.rb:220:in `execute'
+	from /usr/local/bundle/gems/mercenary-0.3.6/lib/mercenary/program.rb:42:in `go'
+	from /usr/local/bundle/gems/mercenary-0.3.6/lib/mercenary.rb:19:in `program'
+	from /usr/local/bundle/gems/github-pages-232/bin/github-pages:6:in `<top (required)>'
+	from /usr/local/bundle/bin/github-pages:25:in `load'
+	from /usr/local/bundle/bin/github-pages:25:in `<main>'
