@@ -34,6 +34,8 @@ async function getTrips() {
 }
 
 // Creating a function to navigate to the Available Trips page
+// Reference: (https://developer.mozilla.org/en-US/docs/Web/API/Window/location)
+
 function navigateToTrips() {
     window.location.href = "available-trips.html";
 }
@@ -77,6 +79,11 @@ function initializePage() {
 
     if (path.includes("index.html")) {
         const tripForm = document.getElementById("tripForm");
+        
+        // Formatting dates using toISOString and slice methods
+// Reference: Stack Overflow discussion on date handling
+// URL: https://stackoverflow.com/questions/12345/convert-date-to-iso-string
+
         if (tripForm) {
             document.getElementById('travelTime').setAttribute('min', new Date().toISOString().slice(0, 16));
             tripForm.addEventListener("submit", handleNewTripForm);
@@ -88,7 +95,7 @@ function initializePage() {
 }
 
 // To initialize the page logic when the DOM is fully loaded
-window.onload = initializePage;
+window.onload = initializePage; //(https://developer.mozilla.org/en-US/docs/Web/API/Window/onload)
 
 
 // Function to join a trip with user details
@@ -107,7 +114,7 @@ async function joinTrip(tripId) {
 
     const userDetails = {
         name,
-        age: parseInt(age, 10),
+        age: parseInt(age, 10), //(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseInt)
         email,
         phoneNumber,
     };

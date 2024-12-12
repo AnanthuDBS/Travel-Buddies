@@ -1,13 +1,14 @@
 //to create a mock db in my tests
-
+//Mongoose documentation
 const mongoose = require("mongoose");
-const { MongoMemoryServer } = require("mongodb-memory-server");
+const { MongoMemoryServer } = require("mongodb-memory-server"); //(https://github.com/nodkz/mongodb-memory-server)
 
+//this declares mongoServer for use in setup and teardown
 let mongoServer;
 
 // Before all tests, start the in-memory MongoDB server and connect
 beforeAll(async () => {
-  mongoServer = await MongoMemoryServer.create();
+  mongoServer = await MongoMemoryServer.create(); //(https://github.com/nodkz/mongodb-memory-server#usage)
   const uri = mongoServer.getUri();
   await mongoose.connect(uri);
 });

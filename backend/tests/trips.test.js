@@ -1,6 +1,6 @@
 //1. test for creating a Trip
 
-const request = require("supertest");
+const request = require("supertest"); //Supertest Documentation (https://www.npmjs.com/package/supertest)
 //const mongoose = require("mongoose");
 const app = require("../app"); //to import my express app and server both
 const Trip = require("../models/trip"); //to import the Trip model
@@ -47,7 +47,7 @@ describe("Trip API", () => {
 
         const res = await request(app).get("/api/trips");
         expect(res.statusCode).toBe(200);
-        expect(res.body.length).toBe(2);
+        expect(res.body.length).toBe(2); //there should be 2 trips
         expect(res.body[0].destination).toBe("Cork");
         expect(res.body[1].destination).toBe("Kildare");
     });

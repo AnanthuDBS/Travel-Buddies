@@ -10,7 +10,7 @@
             font-family: Arial, sans-serif;
             padding: 50px;
         }
-        .background {
+        .background { /*Reference: https://www.w3schools.com/css/css_background.asp*/
             position: fixed;
             top: 0;
             left: 0;
@@ -31,7 +31,7 @@
             margin-top: 10px;
             padding: 10px;
         }
-        button {
+        button { /*Reference: https://developer.mozilla.org/en-US/docs/Web/CSS/:hover */
             background-color: turquoise;
             color: black;
             border: 2px solid black;
@@ -48,8 +48,10 @@
     <div class="background"></div>
     <h1>Travel Buddies</h1>
 
+    <!-- Reference: https://www.w3schools.com/tags/tag_marquee.asp -->
     <marquee id="myMarquee" behavior="slide" direction="left" onmouseover="pauseMarquee()" onmouseout="startMarquee()">Dublin Business School will be the starting point for all trips. Contact +3530899627784/20033258@mydbs.ie for details.</marquee>
     <script>
+        // Reference: Stack Overflow discussion on controlling marquee behavior
         var marquee = document.getElementById("myMarquee");
         function pauseMarquee() {
             marquee.stop();
@@ -59,6 +61,7 @@
         }
     </script>
     <!-- Form for creating a trip -->
+    <!-- Reference: HTML form validation: https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation -->
     <form id="tripForm">
         <input type="text" id="destination" placeholder="Destination (within ROI)" required />
         <input type="text" id="modeOfTravel" placeholder="Mode of Travel" required />

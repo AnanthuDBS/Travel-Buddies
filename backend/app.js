@@ -1,4 +1,5 @@
 // Required dependencies are imported first 
+//References: Express. Mongoose, CORS, Node and npmjs documentations
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");

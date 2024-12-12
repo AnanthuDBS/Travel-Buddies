@@ -1,5 +1,5 @@
 // API routes for Creating, Reading, Joining, Updating, and Deleting trips
-
+//References Express and Mongoose documentations
 const express = require("express");
 const Trip = require("../models/trip");
 const router = express.Router();

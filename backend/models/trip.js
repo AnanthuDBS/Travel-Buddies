@@ -1,4 +1,5 @@
 // Import mongoose to work with MongoDB
+//Mongoose documentation - (https://mongoosejs.com/docs/guide.html)
 const mongoose = require("mongoose");
 
 // Define the schema for a trip using mongoose's schema class
