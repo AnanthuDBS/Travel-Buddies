@@ -48,8 +48,16 @@
     <div class="background"></div>
     <h1>Travel Buddies</h1>
 
-    <marquee behavior="scroll" direction="left">Dublin Business School will be the starting point for all trips. Contact +3530899627784/20033258@mydbs.ie for details.</marquee>
-
+    <marquee id="myMarquee" behavior="slide" direction="left" onmouseover="pauseMarquee()" onmouseout="startMarquee()">Dublin Business School will be the starting point for all trips. Contact +3530899627784/20033258@mydbs.ie for details.</marquee>
+    <script>
+        var marquee = document.getElementById("myMarquee");
+        function pauseMarquee() {
+            marquee.stop();
+        }
+        function startMarquee() {
+            marquee.start();
+        }
+    </script>
     <!-- Form for creating a trip -->
     <form id="tripForm">
         <input type="text" id="destination" placeholder="Destination (within ROI)" required />
