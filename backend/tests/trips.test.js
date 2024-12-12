@@ -74,5 +74,11 @@ describe("Trip API", () => {
         expect(res.body.destination).toBe("Limerick City");
         expect(res.body.modeOfTravel).toBe("Train");
         expect(res.body.participantLimit).toBe(20);
+
+         // Validate in the database
+        const tripInDb = await Trip.findById(trip._id);
+        expect(tripInDb.destination).toBe("Limerick City");
+        expect(tripInDb.modeOfTravel).toBe("Train");
+        expect(tripInDb.participantLimit).toBe(20);
     });
 });
