@@ -11,6 +11,12 @@ PostList: Displays all available travel plans with option to join.
 PostDetail: Shows specific details of a travel post, including the number of current participants.
 UserActions: Allows to join, edit and delete the trips.
 
+Installation Setup;
+cd into backend
+"node app.js"
+cd into frontend
+"live-server"
+
 Database: MongoDB Atlas, as well as Compass for local database if necessary
 Create (POST): Add a new travel plan.
 Read (GET): Retrieve available travel plans (all posts or by specific trip ID).
