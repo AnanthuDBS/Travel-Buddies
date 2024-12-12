@@ -22,6 +22,7 @@ API integration testes using Postman.
 Validation: Ensure that users don’t join if the participant limit is reached, and no duplicate email IDs or phone numbers are used.
 Join Logic: Functions to handle users joining a trip.
 
+<<<<<<< HEAD
 References (have provided inline references also);
 
 express - https://expressjs.com/en/starter/hello-world.html -detailed guide on Routing, Middlewares, etc. are available
@@ -51,3 +52,8 @@ https://github.com/ladjs/supertest
 https://www.npmjs.com/package/supertest 
 
 Have used GenAIs for decoding certain errors at times.
+=======
+Future updates;
+>Implement users and login to make the CRUD flow better
+>Allow users to leave a trip also (now, the only way for this is to delete the trip and create one again)
+>>>>>>> daeee31fc4b6e7fb0328f842c2a20eadd27fa269
